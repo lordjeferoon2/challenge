@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  mongodb:
+    image: mongo:5
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: fs_user
+      MONGO_INITDB_ROOT_PASSWORD: fs_user
+      MONGO_INITDB_DATABASE: fs_users_db
+    healthcheck:
+      test: ["CMD", "mongo", "--username", "fs_user", "--password", "fs_user", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    volumes:
+      - mongodb_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    environment:
+      MONGODB_URI: mongodb://fs_user:fs_user@mongodb:27017/fs_users_db?authSource=admin
+      MONGODB_DB: fs_users_db
+      JWT_SECRET: supersecreto123
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRE_MINUTES: 60
+      FRONTEND_ORIGINS: http://frontend:3000,http://localhost:3000
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    environment:
+      API_URL: http://backend:8000/api
+    depends_on:
+      - backend
+
+volumes:
+  mongodb_data:
