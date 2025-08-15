@@ -1,4 +1,4 @@
-# Project Name
+# Full Stack Challenge
 
 Proyecto full-stack con **FastAPI** (backend), **MongoDB** (base de datos) y **Frontend** (React).
 
