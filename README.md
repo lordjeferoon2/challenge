@@ -1,6 +1,6 @@
 # Project Name
 
-Proyecto full-stack con **FastAPI** (backend), **MongoDB** (base de datos) y **Frontend** (React u otra tecnología).
+Proyecto full-stack con **FastAPI** (backend), **MongoDB** (base de datos) y **Frontend** (React).
 
 Este repositorio contiene todo lo necesario para ejecutar el proyecto localmente usando **Docker Compose**, sin necesidad de configurar entornos locales manualmente.
 
@@ -32,7 +32,7 @@ project/
 1. Clona o descarga el repositorio:
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/lordjeferoon2/challenge
 cd project
 ```
 
@@ -48,7 +48,6 @@ Esto hará lo siguiente:
 - Construirá y levantará el **frontend** en `http://localhost:3000`
 - Levantará la base de datos **MongoDB** con el usuario y contraseña configurados en `docker-compose.yml`
 
-> 🔹 Nota: La primera vez puede tardar unos minutos mientras Docker construye las imágenes.
 
 3. Verifica que todos los contenedores estén corriendo:
 
@@ -66,8 +65,6 @@ docker ps
 - Contraseña: `fs_user`
 - Base de datos: `fs_users_db`
 
-> Puedes conectarte con cualquier cliente MongoDB usando estas credenciales.
-
 ---
 
 ## Variables de entorno
@@ -83,8 +80,6 @@ JWT_EXPIRE_MINUTES=60
 FRONTEND_ORIGINS=http://frontend:3000
 API_URL=http://backend:8000/api
 ```
-
-> No necesitas crear `.env` adicionales, Docker Compose ya inyecta estas variables.
 
 ---
 
@@ -120,7 +115,5 @@ docker-compose down -v
 
 ---
 
-¡Listo! Con esto cualquier persona puede clonar tu repositorio y levantar **todo el proyecto localmente** usando solo Docker Compose.
-
-lo quiero en archivo
+¡Listo!
 
