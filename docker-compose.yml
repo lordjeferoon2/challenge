@@ -29,7 +29,7 @@ services:
       JWT_SECRET: supersecreto123
       JWT_ALGORITHM: HS256
       JWT_EXPIRE_MINUTES: 60
-      FRONTEND_ORIGINS: http://frontend:3000,http://localhost:3000
+      FRONTEND_ORIGINS: http://frontend:3000,http://localhost:3000,http://4.236.176.3:3000/
     depends_on:
       mongodb:
         condition: service_healthy
